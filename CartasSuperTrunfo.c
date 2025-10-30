@@ -1,104 +1,66 @@
+/*
+ * Meu código para o Desafio Super Trunfo - Comparação de 2 Rodadas
+ * Autor: (Seu Nome/Login)
+ *
+ * ... (Todo o código anterior se mantém igual até a última parte) ...
+ */
+
 #include <stdio.h> // Para printf e scanf
-#include <string.h> // Tive que incluir essa biblioteca nova para usar o 'strcpy'
+#include <string.h> // Para 'strcpy'
 
 int main() {
-    // Título do Desafio
-    printf("Desafio Super Trunfo! - Nível Aventureiro \n");
+    printf("Desafio Super Trunfo! - Disputa de 2 Rodadas \n");
 
-    // --- Variáveis da Carta 1 ---
-    // (Declarações mantidas, sem mudanças)
-    char estado1;
-    char codigo1[5];
-    char cidade1[30];
+    // --- Variáveis das Cartas (Igual) ---
+    char estado1, codigo1[5], cidade1[30];
     unsigned long int populacao1; 
-    float area1;
-    float pib1;
+    float area1, pib1, densidade_populacional1, pib_per_capita1, soma_atributos1;
     int pontos_turisticos1;
-    float densidade_populacional1; 
-    float pib_per_capita1;       
 
-    // --- Variáveis da Carta 2 ---
-    // (Declarações mantidas, sem mudanças)
-    char estado2;
-    char codigo2[5];
-    char cidade2[30];
+    char estado2, codigo2[5], cidade2[30];
     unsigned long int populacao2; 
-    float area2;
-    float pib2;
+    float area2, pib2, densidade_populacional2, pib_per_capita2, soma_atributos2;
     int pontos_turisticos2;
-    float densidade_populacional2;
-    float pib_per_capita2;
+
+    // --- Variáveis de Controle das 2 Rodadas (Igual) ---
+    int placar1 = 0; // Placar da Carta 1
+    int placar2 = 0; // Placar da Carta 2
+    int escolha1 = 0; // Guarda a escolha da primeira rodada
+    int escolha2 = 0; // Guarda a escolha da segunda rodada
+
 
     // =======================================================
-    // ÁREA PARA ENTRADA DE DADOS (MODIFICADA)
+    // ÁREA PARA ENTRADA DE DADOS (Mantida com dados fixos)
     // =======================================================
     
     printf("\n--- Carregando dados fixos das cartas ---\n");
-
-    // --- Dados Fixos da Carta 1 (São Paulo) ---
-    // Em vez de 'scanf', agora eu atribuo os valores direto
-    estado1 = 'A';
-    // Para strings (vetor de char), preciso usar 'strcpy'
-    strcpy(codigo1, "A01"); 
-    // Coloquei "Sao Paulo" sem acento, C puro às vezes buga com acentuação
-    strcpy(cidade1, "Sao Paulo"); 
-    populacao1 = 12325000;
-    area1 = 1521.11;
-    pib1 = 699.28;
-    pontos_turisticos1 = 50;
+    estado1 = 'A'; strcpy(codigo1, "A01"); strcpy(cidade1, "Sao Paulo");
+    populacao1 = 12325000; area1 = 1521.11; pib1 = 699.28; pontos_turisticos1 = 50;
     
-    // --- Dados Fixos da Carta 2 (Rio de Janeiro) ---
-    // Mesma coisa para a carta 2
-    estado2 = 'B';
-    strcpy(codigo2, "B02");
-    strcpy(cidade2, "Rio de Janeiro");
-    populacao2 = 6748000;
-    area2 = 1200.25;
-    pib2 = 300.50;
-    pontos_turisticos2 = 30;
-
-    // Coloquei um printf para confirmar que as cartas foram "carregadas"
+    estado2 = 'B'; strcpy(codigo2, "B02"); strcpy(cidade2, "Rio de Janeiro");
+    populacao2 = 6748000; area2 = 1200.25; pib2 = 300.50; pontos_turisticos2 = 30;
     printf("Cartas carregadas: %s (%c) vs %s (%c)\n", cidade1, estado1, cidade2, estado2);
 
     // =======================================================
-    // ÁREA PARA OS CÁLCULOS
+    // ÁREA PARA OS CÁLCULOS (Mantida igual)
     // =======================================================
-    // Ela agora vai usar os valores fixos que eu defini ali em cima.
     
     // --- Cálculos da Carta 1 ---
-    if (area1 > 0) {
-        densidade_populacional1 = (float)populacao1 / area1;
-    } else {
-        densidade_populacional1 = 0;
-    }
-
-    if (populacao1 > 0) {
-        pib_per_capita1 = (pib1 * 1000000000) / populacao1;
-    } else {
-        pib_per_capita1 = 0;
-    }
+    densidade_populacional1 = (area1 > 0) ? ((float)populacao1 / area1) : 0;
+    pib_per_capita1 = (populacao1 > 0) ? ((pib1 * 1000000000) / populacao1) : 0;
+    soma_atributos1 = (float)populacao1 + area1 + pib1 + (float)pontos_turisticos1 + pib_per_capita1;
 
     // --- Cálculos da Carta 2 ---
-    if (area2 > 0) {
-        densidade_populacional2 = (float)populacao2 / area2;
-    } else {
-        densidade_populacional2 = 0;
-    }
-    if (populacao2 > 0) {
-        pib_per_capita2 = (pib2 * 1000000000) / populacao2;
-    } else {
-        pib_per_capita2 = 0;
-    }
+    densidade_populacional2 = (area2 > 0) ? ((float)populacao2 / area2) : 0;
+    pib_per_capita2 = (populacao2 > 0) ? ((pib2 * 1000000000) / populacao2) : 0;
+    soma_atributos2 = (float)populacao2 + area2 + pib2 + (float)pontos_turisticos2 + pib_per_capita2;
     
     // =======================================================
-    // ÁREA PARA COMPARAÇÃO DAS CARTAS
+    // ÁREA DE COMPARAÇÃO - RODADA 1 (Mantida igual)
     // =======================================================
     
-    int escolha; // Variável para guardar a opção do menu
-
-    // 1. Mostrar o menu interativo
-    printf("\n\n--- HORA DO DUELO! ---\n");
-    printf("Escolha o atributo para comparar:\n");
+    printf("\n\n--- RODADA 1 de 2 ---\n");
+    printf("Escolha o PRIMEIRO atributo para comparar:\n");
     printf("1. População\n");
     printf("2. Área\n");
     printf("3. PIB\n");
@@ -106,93 +68,193 @@ int main() {
     printf("5. Densidade Demográfica\n");
     printf("Digite sua escolha (1-5): ");
     
-    // 2. Ler a escolha do jogador (Esse scanf precisa ficar!)
-    scanf("%d", &escolha);
-    printf("\n--- Resultado da Comparação ---\n");
+    scanf("%d", &escolha1);
+    
+    // Validação simples
+    while (escolha1 < 1 || escolha1 > 5) {
+        printf("Erro! Escolha um número entre 1 e 5. Tente de novo: ");
+        scanf("%d", &escolha1);
+    }
+    
+    printf("\n--- Resultado da Rodada 1 ---\n");
 
-    // 3. Usar a estrutura 'switch' para tratar a escolha
-    switch (escolha) {
+    // Switch para a RODADA 1
+    switch (escolha1) {
         case 1:
-            // --- Comparação: População (Maior vence) ---
             printf("Atributo: População\n");
-            printf("Carta 1 - %s (%c): %lu\n", cidade1, estado1, populacao1);
-            printf("Carta 2 - %s (%c): %lu\n", cidade2, estado2, populacao2);
-            
             if (populacao1 > populacao2) {
-                printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+                printf("Rodada 1: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++; 
             } else if (populacao2 > populacao1) {
-                printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+                printf("Rodada 1: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++; 
             } else {
-                printf("Resultado: Empate!\n"); 
+                printf("Empate! Ninguém pontuou.\n"); 
             }
-            break; 
-
+            break;
         case 2:
-            // --- Comparação: Área (Maior vence) ---
             printf("Atributo: Área (km²)\n");
-            printf("Carta 1 - %s (%c): %.2f\n", cidade1, estado1, area1);
-            printf("Carta 2 - %s (%c): %.2f\n", cidade2, estado2, area2);
-            
             if (area1 > area2) {
-                printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+                printf("Rodada 1: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
             } else if (area2 > area1) {
-                printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+                printf("Rodada 1: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
             } else {
-                printf("Resultado: Empate!\n");
+                printf("Empate! Ninguém pontuou.\n");
             }
             break;
-
         case 3:
-            // --- Comparação: PIB (Maior vence) ---
             printf("Atributo: PIB (em bilhões de reais)\n");
-            printf("Carta 1 - %s (%c): %.2f\n", cidade1, estado1, pib1);
-            printf("Carta 2 - %s (%c): %.2f\n", cidade2, estado2, pib2);
-            
             if (pib1 > pib2) {
-                printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+                printf("Rodada 1: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
             } else if (pib2 > pib1) {
-                printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+                printf("Rodada 1: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
             } else {
-                printf("Resultado: Empate!\n");
+                printf("Empate! Ninguém pontuou.\n");
             }
             break;
-
         case 4:
-            // --- Comparação: Pontos Turísticos (Maior vence) ---
             printf("Atributo: Pontos Turísticos\n");
-            printf("Carta 1 - %s (%c): %d\n", cidade1, estado1, pontos_turisticos1);
-            printf("Carta 2 - %s (%c): %d\n", cidade2, estado2, pontos_turisticos2);
-            
             if (pontos_turisticos1 > pontos_turisticos2) {
-                printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+                printf("Rodada 1: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
             } else if (pontos_turisticos2 > pontos_turisticos1) {
-                printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+                printf("Rodada 1: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
             } else {
-                printf("Resultado: Empate!\n");
+                printf("Empate! Ninguém pontuou.\n");
             }
             break;
-
         case 5:
-            // --- Comparação: Densidade Demográfica (MENOR vence) ---
             printf("Atributo: Densidade Demográfica (hab/km²)\n");
-            printf("Carta 1 - %s (%c): %.2f\n", cidade1, estado1, densidade_populacional1);
-            printf("Carta 2 - %s (%c): %.2f\n", cidade2, estado2, densidade_populacional2);
-            
-            // A lógica invertida (menor ganha)
             if (densidade_populacional1 < densidade_populacional2) {
-                printf("Resultado: Carta 1 (%s) venceu!\n", cidade1);
+                printf("Rodada 1: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
             } else if (densidade_populacional2 < densidade_populacional1) {
-                printf("Resultado: Carta 2 (%s) venceu!\n", cidade2);
+                printf("Rodada 1: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
             } else {
-                printf("Resultado: Empate!\n");
+                printf("Empate! Ninguém pontuou.\n");
             }
             break;
+    } // Fim do switch 1
+    
+    // =======================================================
+    // ÁREA DE COMPARAÇÃO - RODADA 2 (Mantida igual)
+    // =======================================================
 
-        default:
-            // Tratando escolha inválida
-            printf("Erro: Opção inválida! Você devia ter escolhido um número entre 1 e 5.\n");
+    printf("\n\n--- RODADA 2 de 2 ---\n");
+    printf("Escolha o SEGUNDO atributo para comparar:\n");
+    printf("1. População\n");
+    printf("2. Área\n");
+    printf("3. PIB\n");
+    printf("4. Pontos Turísticos\n");
+    printf("5. Densidade Demográfica\n");
+    printf("Digite sua escolha (1-5): ");
+
+    scanf("%d", &escolha2);
+
+    // Validação
+    while (escolha2 < 1 || escolha2 > 5 || escolha2 == escolha1) {
+        if (escolha2 == escolha1) {
+            printf("Erro! Esse atributo já foi usado. Escolha outro: ");
+        } else {
+            printf("Erro! Escolha um número entre 1 e 5. Tente de novo: ");
+        }
+        scanf("%d", &escolha2);
+    }
+    
+    printf("\n--- Resultado da Rodada 2 ---\n");
+
+    // Switch para a RODADA 2
+    switch (escolha2) {
+        case 1:
+            printf("Atributo: População\n");
+            if (populacao1 > populacao2) {
+                printf("Rodada 2: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++; 
+            } else if (populacao2 > populacao1) {
+                printf("Rodada 2: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++; 
+            } else {
+                printf("Empate! Ninguém pontuou.\n"); 
+            }
             break;
-    } // Fim do switch
+        case 2:
+            printf("Atributo: Área (km²)\n");
+            if (area1 > area2) {
+                printf("Rodada 2: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
+            } else if (area2 > area1) {
+                printf("Rodada 2: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
+            } else {
+                printf("Empate! Ninguém pontuou.\n");
+            }
+            break;
+        case 3:
+            printf("Atributo: PIB (em bilhões de reais)\n");
+            if (pib1 > pib2) {
+                printf("Rodada 2: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
+            } else if (pib2 > pib1) {
+                printf("Rodada 2: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
+            } else {
+                printf("Empate! Ninguém pontuou.\n");
+            }
+            break;
+        case 4:
+            printf("Atributo: Pontos Turísticos\n");
+            if (pontos_turisticos1 > pontos_turisticos2) {
+                printf("Rodada 2: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
+            } else if (pontos_turisticos2 > pontos_turisticos1) {
+                printf("Rodada 2: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
+            } else {
+                printf("Empate! Ninguém pontuou.\n");
+            }
+            break;
+        case 5:
+            printf("Atributo: Densidade Demográfica (hab/km²)\n");
+            if (densidade_populacional1 < densidade_populacional2) {
+                printf("Rodada 2: Carta 1 (%s) venceu!\n", cidade1);
+                placar1++;
+            } else if (densidade_populacional2 < densidade_populacional1) {
+                printf("Rodada 2: Carta 2 (%s) venceu!\n", cidade2);
+                placar2++;
+            } else {
+                printf("Empate! Ninguém pontuou.\n");
+            }
+            break;
+    } // Fim do switch 2
+
+    // =======================================================
+    // ÁREA FINAL - DECLARAÇÃO DO VENCEDOR (MODIFICADA)
+    // =======================================================
+    
+    printf("\n\n--- FIM DE JOGO! ---\n");
+    printf("PLACAR FINAL: %s [%d] x [%d] %s\n", cidade1, placar1, placar2, cidade2);
+
+    // Lógica final usando == e &&, como você pediu!
+    // || significa "OU"
+    
+    // Casos de vitória da Carta 1 (2x0 OU 1x0)
+    if ((placar1 == 2 && placar2 == 0) || (placar1 == 1 && placar2 == 0)) {
+        printf("O GRANDE VENCEDOR É: CARTA 1 (%s)!\n", cidade1);
+    } 
+    // Casos de vitória da Carta 2 (0x2 OU 0x1)
+    else if ((placar2 == 2 && placar1 == 0) || (placar2 == 1 && placar1 == 0)) {
+        printf("O GRANDE VENCEDOR É: CARTA 2 (%s)!\n", cidade2);
+    } 
+    // Casos de Empate (1x1 OU 0x0)
+    else if ((placar1 == 1 && placar2 == 1) || (placar1 == 0 && placar2 == 0)) {
+        printf("O JOGO TERMINOU EM EMPATE GERAL!\n");
+    }
 
     return 0; // Fim do programa
 }
