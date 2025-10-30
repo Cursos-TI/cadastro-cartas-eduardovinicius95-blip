@@ -1,17 +1,10 @@
-/*
- * Meu código para o Desafio Super Trunfo - Comparação de 2 Rodadas
- * Autor: (Seu Nome/Login)
- *
- * ... (Todo o código anterior se mantém igual até a última parte) ...
- */
-
 #include <stdio.h> // Para printf e scanf
 #include <string.h> // Para 'strcpy'
 
 int main() {
     printf("Desafio Super Trunfo! - Disputa de 2 Rodadas \n");
 
-    // --- Variáveis das Cartas (Igual) ---
+    // --- Variáveis das Cartas  ---
     char estado1, codigo1[5], cidade1[30];
     unsigned long int populacao1; 
     float area1, pib1, densidade_populacional1, pib_per_capita1, soma_atributos1;
@@ -22,7 +15,7 @@ int main() {
     float area2, pib2, densidade_populacional2, pib_per_capita2, soma_atributos2;
     int pontos_turisticos2;
 
-    // --- Variáveis de Controle das 2 Rodadas (Igual) ---
+    // --- Variáveis de Controle das 2 Rodadas ---
     int placar1 = 0; // Placar da Carta 1
     int placar2 = 0; // Placar da Carta 2
     int escolha1 = 0; // Guarda a escolha da primeira rodada
@@ -30,7 +23,7 @@ int main() {
 
 
     // =======================================================
-    // ÁREA PARA ENTRADA DE DADOS (Mantida com dados fixos)
+    // ÁREA PARA ENTRADA DE DADOS
     // =======================================================
     
     printf("\n--- Carregando dados fixos das cartas ---\n");
@@ -42,7 +35,7 @@ int main() {
     printf("Cartas carregadas: %s (%c) vs %s (%c)\n", cidade1, estado1, cidade2, estado2);
 
     // =======================================================
-    // ÁREA PARA OS CÁLCULOS (Mantida igual)
+    // ÁREA PARA OS CÁLCULOS
     // =======================================================
     
     // --- Cálculos da Carta 1 ---
@@ -56,7 +49,7 @@ int main() {
     soma_atributos2 = (float)populacao2 + area2 + pib2 + (float)pontos_turisticos2 + pib_per_capita2;
     
     // =======================================================
-    // ÁREA DE COMPARAÇÃO - RODADA 1 (Mantida igual)
+    // ÁREA DE COMPARAÇÃO - RODADA 1
     // =======================================================
     
     printf("\n\n--- RODADA 1 de 2 ---\n");
@@ -143,7 +136,7 @@ int main() {
     } // Fim do switch 1
     
     // =======================================================
-    // ÁREA DE COMPARAÇÃO - RODADA 2 (Mantida igual)
+    // ÁREA DE COMPARAÇÃO - RODADA 2
     // =======================================================
 
     printf("\n\n--- RODADA 2 de 2 ---\n");
@@ -234,14 +227,11 @@ int main() {
     } // Fim do switch 2
 
     // =======================================================
-    // ÁREA FINAL - DECLARAÇÃO DO VENCEDOR (MODIFICADA)
+    // ÁREA FINAL - DECLARAÇÃO DO VENCEDOR
     // =======================================================
     
     printf("\n\n--- FIM DE JOGO! ---\n");
     printf("PLACAR FINAL: %s [%d] x [%d] %s\n", cidade1, placar1, placar2, cidade2);
-
-    // Lógica final usando == e &&, como você pediu!
-    // || significa "OU"
     
     // Casos de vitória da Carta 1 (2x0 OU 1x0)
     if ((placar1 == 2 && placar2 == 0) || (placar1 == 1 && placar2 == 0)) {
@@ -256,5 +246,5 @@ int main() {
         printf("O JOGO TERMINOU EM EMPATE GERAL!\n");
     }
 
-    return 0; // Fim do programa
+    return 0; // Fim
 }
